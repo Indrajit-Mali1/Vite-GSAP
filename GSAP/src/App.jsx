@@ -3,7 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import gsap from "gsap";
-// import { useGSAP } from '@gsap/react';
+import { useGSAP } from '@gsap/react';
+import { useEffect } from 'react';
 gsap.registerPlugin(useGSAP);
 
 
@@ -13,7 +14,10 @@ function App() {
   useGSAP(()=>{
     // gsap.from()
   },[]);
-  
+  useGSAP(()=>{
+
+  }, []);
+    
 
   return (
     
