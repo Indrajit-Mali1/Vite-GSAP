@@ -27,20 +27,51 @@ function App() {
     })
   }, []);
 
+  const timeline = gsap.timeline({
+    repeat: -1, repeatDelay: 1, yoyo: true
+  });
+
+  useGSAP(() => {
+    timeline.to('#yellow-box', {
+      x: 250,
+      rotation: 360,
+      borderRadius: '100%',
+      duration: 2,
+      ease: "back.inOut"
+    })
+
+
+    timeline.to('#yellow-box', {
+      x: 500,
+      scale: 2,
+      rotation: 360,
+      borderRadius: '8px',
+      duration: 2,
+      ease: 'back.inOut'
+    })
+  }, []);
 
 
   return (
 
     <>
-      <main className='bg-black w-screen '>
+      <div className='bg-black w-screen '>
         <div id="red-box" className="bg-red-600 w-20 h-20"></div>
         <div>
-          <button onClick={() => { }}>Play/Pause</button>
-          <div id="yellow-box" className="bg-yellow-500 w-20 h-20"></div>
+          <button onClick={() => { 
+            if(timeline.paused()){
+              timeline.play();
+            }else{
+              timeline.pause();
+            }
+          }}>Play/Pause</button>
+          <div id="yellow-box" className="bg-yellow-500 w-20 h-20 rounded-lg"></div>
         </div>
-      </main>
 
-      <div className="">123</div>
+        <div className="flex gap-5">
+          <div className="w-20 h-20 bg-indigo-200 rounded-lg stagger-box" />
+        </div>
+      </div>
     </>
   )
 }
