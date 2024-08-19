@@ -17,6 +17,8 @@ Sentry.init({
     Sentry.replayIntegration({
       askAllText: false,
       blockAllMedia: false,
+      maskAllText : false,
+
     }),
   ],
   // Tracing
