@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {useGSAP} from '@gsap/react'
 import { animateWithGsap1}  from '../utils/animations'
-import exploreVideo from '../utils';
+import { explore1Img, exploreVideo, explore2Img } from '../utils';
+
 
 const Features = () => {
+
+  const videoRef = useRef()
+
   useGSAP(()=>{
     animateWithGsap1('#features_title', {y:0, opacity: 1})
+    animateWithGsap1('.g_grow',{scale:1, opacity: 1, ease:'power1'}, {scrub: 5.5})
+    animateWithGsap1('.g_text',{y:0, opacity: 1, ease:'power2.inOut', duration:1})
   }, []);
   return (
     <section className='h-full bg-zinc relative overflow-hidden common-padding'>
@@ -20,10 +26,28 @@ const Features = () => {
           </div>
           <div className='flex-center flex-col sm:px-10 '>
             <div className="relative h-[50vh] w-full flex items-center" >
-              <video playsInline id="exploreVideo">
+              <video playsInline id="exploreVideo" className='w-full h-full object-cover object-center ' preload='none' muted autoPlay ref={}>
                 <source src={exploreVideo} type="video/mp4" />
               </video>
             </div>
+            <div className='flex flex-col w-full relative'>
+              <div className='feature-video-container'>
+                <div className='overflow-hidden flex-1 h-[50vh]'>
+                  <img src={explore1Img} alt="titanium" className='feature-video g-grow' />
+                </div>
+                <div className='overflow-hidden flex-1 h-[50vh]'>
+                  <img src={explore2Img} alt="titanium" className='feature-video g-grow' />
+                </div>
+              </div>
+              <div className="feature-text-container">
+                <div className="flex-1 flex-center">
+                  <p className='feature-text g_text'>iPhone 15 Pro is {''}
+                    <span className='text-white'>the first iPhone to feature an aerospace-grade titanium design</span> {''}
+                    using the same alloy that spacecraft use for missions to Mars.
+                  </p>
+                </div>
+              </div>
+  
           </div>
         </div>
       </div>
